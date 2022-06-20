@@ -7,7 +7,7 @@ def read_file(word):
         flag = False
         for row in file_reader:
             symbolss = row[0].split(';')
-            if word in symbolss[0]:
+            if word == symbolss[0]:
                 flag = True
                 symbols_arr = symbolss[1:]
                 break

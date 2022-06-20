@@ -220,9 +220,9 @@ class Word:
         new_word = self.change_word[:1]
         self.set_change_word(self.__change_word[1:])
         for ch in self.change_word:
-            new_word += ch
             if self.find_root(new_word):
                 continue
+            new_word += ch
         ending_list = syllables_of_words
         ending_list.reverse()
         new_list = list(ending_list)
@@ -1430,27 +1430,34 @@ class Word:
         elif len(word) > 2 and (number := backend.Numeral.get_info_numeral_root(nltk.word_tokenize(word))) != 'none':
             self.set_number(number)
             return self.__number
-        if (res := backend.file_reader.read_file(word)) != 'none':
-            self.__symbols_list = res.copy()
-            self.__part_of_speech = res[0]
-            self.__root = self.__original_word
+        elif word in backend.Pronoun.all_pronoun:
+            self.__root = word
+            self.__part_of_speech = 'prn'
+            self.set_symbols_list('prn')
+            if (symbol := backend.Pronoun.get_info_pronoun_root(word)) != 'none':
+                self.set_symbols_list(symbol)
+            if (symbol := backend.Pronoun.is_sg_or_pl(word)) != 'none':
+                self.set_symbols_list(symbol)
+            self.set_all_info()
+            return self.__all_info
+        elif word in backend.Adverb.adv_words or word in backend.Adverb.adv_kosh_words:
+            self.__root = word
+            self.__part_of_speech = 'adv'
+            self.set_symbols_list('adv')
+            self.set_all_info()
+            return self.__all_info
+        elif word in backend.Numeral.num_root:
+            self.__root = word
+            self.__part_of_speech = 'num'
+            self.set_symbols_list('num')
+            self.set_symbols_list('card')
             self.set_all_info()
             return self.__all_info
         else:
-            if word in backend.Pronoun.all_pronoun:
-                self.__root = word
-                self.__part_of_speech = 'prn'
-                self.set_symbols_list('prn')
-                if (symbol := backend.Pronoun.get_info_pronoun_root(word)) != 'none':
-                    self.set_symbols_list(symbol)
-                if (symbol := backend.Pronoun.is_sg_or_pl(word)) != 'none':
-                    self.set_symbols_list(symbol)
-                self.set_all_info()
-                return self.__all_info
-            elif word in backend.Adverb.adv_words or word in backend.Adverb.adv_kosh_words:
-                self.__root = word
-                self.__part_of_speech = 'adv'
-                self.set_symbols_list('adv')
+            if (res := backend.file_reader.read_file(word)) != 'none':
+                self.__symbols_list = res.copy()
+                self.__part_of_speech = res[0]
+                self.__root = self.__original_word
                 self.set_all_info()
                 return self.__all_info
             else:
@@ -1557,5 +1564,16 @@ class Word:
         self.info = '_'.join(mylist)
 
 start = time.time()
+'''input_string = input('Анализ учун сөз жазыныз: ').strip()
+words = input_string.split(' ')
+for w in words:
+    word = Word(w)
+    res = word.search_word_db(word.change_word)
+    root = word.root
+    part_of_speech = word.part_of_speech
+    all_symbols = word.symbols_list
+    all_endings = word.symbols
+
+    print(res)'''
 end = time.time()
 print(end - start)

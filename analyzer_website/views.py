@@ -19,21 +19,24 @@ def analyzer(request):
 def validate(request):
    if request.method == 'POST':
       word = request.POST["words"]
-      ans = Word(word)
-      res = ans.search_word_db(ans.change_word)
-      root = ans.root
-      part_of_speech = ans.part_of_speech
-      all_symbols = ans.symbols_list
-      all_endings = ans.symbols
-      dict = {
-          'word': word,
-          'res': res,
-          'root': root,
-          'part_of_speech': part_of_speech,
-          'all_symbols': all_symbols,
-          'all_endings': all_endings
-      }
+      words = word.split(' ')
+      for w in words:
+          ans = Word(w)
+          res = ans.search_word_db(ans.change_word)
+          root = ans.root
+          part_of_speech = ans.part_of_speech
+          all_symbols = ans.symbols_list
+          all_endings = ans.symbols
 
-      return render(request, 'analyzer_website/response.html', dict)
+          dict = {
+              'word': word,
+              'res': res,
+              'root': root,
+              'part_of_speech': part_of_speech,
+              'all_symbols': all_symbols,
+              'all_endings': all_endings
+          }
+
+          return render(request, 'analyzer_website/response.html', dict)
 
 

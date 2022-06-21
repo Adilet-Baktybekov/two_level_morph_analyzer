@@ -1535,7 +1535,7 @@ class Word:
     def set_symbols_list(self, symbol):
         self.__symbols_list.append(symbol)
     def set_all_info(self):
-        if 'sg' and 'pl' in self.__symbols_list:
+        if 'sg' in self.__symbols_list and 'pl' in self.__symbols_list:
             self.__symbols_list.remove('sg')
         for symbol in self.__symbols_list:
             if symbol == '':

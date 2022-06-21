@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import sys
+import os
 sys.path.append('../backend/main_analyzer.py')
 from backend.main_analyzer import Word
 from .models import *
@@ -20,23 +21,17 @@ def validate(request):
    if request.method == 'POST':
       word = request.POST["words"]
       words = word.split(' ')
+      all_res = ''
       for w in words:
           ans = Word(w)
           res = ans.search_word_db(ans.change_word)
-          root = ans.root
-          part_of_speech = ans.part_of_speech
-          all_symbols = ans.symbols_list
-          all_endings = ans.symbols
+          all_res += res + "\n"
+      dict = {
+          'word': word,
+          'res': all_res
 
-          dict = {
-              'word': word,
-              'res': res,
-              'root': root,
-              'part_of_speech': part_of_speech,
-              'all_symbols': all_symbols,
-              'all_endings': all_endings
-          }
+      }
 
-          return render(request, 'analyzer_website/response.html', dict)
+      return render(request, 'analyzer_website/response.html', dict)
 
 

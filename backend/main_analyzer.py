@@ -1552,7 +1552,7 @@ class Word:
         if self.__negiz == '':
             self.__all_info = "Уңгу: " + str(self.__root) + "\n" + "Сөз түркүм: " + str(self.__part_of_speech) + \
                               "\n" + "Баардык символдор: " + str(list(dict.fromkeys(self.__symbols_list))) + "\n" + \
-                                                           "Мүчөлөр: " + str(self.__symbols)
+                                                           "Мүчөлөр: " + str(self.__symbols) + '\n'
 
         else:
             self.__all_info = "Негиз: " + str(self.__negiz) + "\n" + "Уңгу: " + str(self.__root) + "\n" + \

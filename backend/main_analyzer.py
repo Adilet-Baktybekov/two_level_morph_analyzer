@@ -1550,8 +1550,8 @@ class Word:
                 self.__symbols_list.remove('p3sg')
         self.__symbols_list = [i for i in self.__symbols_list if i]
         if self.__negiz == '':
-            self.__all_info = "Уңгу: " + str(self.__root) + "\n" + "Сөз түркүм: " + str(self.__part_of_speech) + \
-                              "\n" + "Баардык символдор: " + str(list(dict.fromkeys(self.__symbols_list))) + "\n" + \
+            self.__all_info = "Уңгу: " + str(self.__root) + ".\n" + "Сөз түркүм: " + str(self.__part_of_speech) + \
+                              ".\n" + "Баардык символдор: " + str(list(dict.fromkeys(self.__symbols_list))) + ".\n" + \
                                                            "Мүчөлөр: " + str(self.__symbols) + '\n'
 
         else:

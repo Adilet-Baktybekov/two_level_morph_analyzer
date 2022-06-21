@@ -137,6 +137,7 @@ class Word:
     __all_info = ''
     __info = ''
     __part_of_speech = ''
+    __part_of_speech_kg = ''
     __symbols = {}
     __symbols_list = []
     __negiz = ''
@@ -229,7 +230,7 @@ class Word:
         for ending in ending_list:
             str_ending = listToString(ending)
             index = new_list.index(ending)
-            if self.part_of_speech == 'n':
+            if self.part_of_speech == 'n' or self.part_of_speech == 'зат атооч':
                 if (symbol := backend.Noun.get_info_noun_ending_from_noun(str_ending)) != 'none':
                     new_list.reverse()
                     new_word = listToString(new_list)
@@ -457,7 +458,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
-            elif self.part_of_speech == 'v':
+            elif self.part_of_speech == 'v' or self.part_of_speech == "этиш":
                 if (symbol := backend.Verb.get_info_verb_verb_to_verb(str_ending)) != 'none':
                     new_list.reverse()
                     new_word = listToString(new_list)
@@ -730,7 +731,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
-            elif self.part_of_speech == 'num':
+            elif self.part_of_speech == 'num' or self.part_of_speech == "сан атооч":
                 if (symbol := backend.Numeral.get_info_numeral_ending(str_ending)) != 'none':
 
                     self.set_symbol(symbol, ending)
@@ -1001,7 +1002,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
-            elif self.part_of_speech == "adj":
+            elif self.part_of_speech == "adj" or self.part_of_speech == "сын атооч":
                 if (symbol := backend.Adjectives_2.get_info_adj_ending(ending)) != 'none':
                     self.set_symbol('from_adj_to_adj', ending)
                     new_list.pop(index)
@@ -1210,7 +1211,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
-            elif self.part_of_speech == "prn":
+            elif self.part_of_speech == "prn" or self.part_of_speech == "ат атооч":
                 if (symbol := backend.Cases.get_info_cases(ending)) != 'none':
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
@@ -1404,7 +1405,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------------------------
-            elif self.part_of_speech == "adv":
+            elif self.part_of_speech == "adv" or self.part_of_speech == "тактооч":
                 if (symbol := backend.Cases.get_info_cases(ending)) != 'none':
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
@@ -1422,9 +1423,9 @@ class Word:
         #self.__original_word
         if word.isnumeric():
             self.__root = word
-            self.set_symbols_list('num')
-            self.set_symbols_list('card')
-            self.__part_of_speech = 'num'
+            self.set_symbols_list('сан атооч')
+            self.set_symbols_list('эсептик сан атооч')
+            self.__part_of_speech = 'сан атооч'
             self.set_all_info()
             return self.__all_info
         elif len(word) > 2 and (number := backend.Numeral.get_info_numeral_root(nltk.word_tokenize(word))) != 'none':
@@ -1432,8 +1433,8 @@ class Word:
             return self.__number
         elif word in backend.Pronoun.all_pronoun:
             self.__root = word
-            self.__part_of_speech = 'prn'
-            self.set_symbols_list('prn')
+            self.__part_of_speech = 'Ат атооч'
+            self.set_symbols_list('ат атооч')
             if (symbol := backend.Pronoun.get_info_pronoun_root(word)) != 'none':
                 self.set_symbols_list(symbol)
             if (symbol := backend.Pronoun.is_sg_or_pl(word)) != 'none':
@@ -1442,15 +1443,15 @@ class Word:
             return self.__all_info
         elif word in backend.Adverb.adv_words or word in backend.Adverb.adv_kosh_words:
             self.__root = word
-            self.__part_of_speech = 'adv'
-            self.set_symbols_list('adv')
+            self.__part_of_speech = 'тактооч'
+            self.set_symbols_list('тактооч')
             self.set_all_info()
             return self.__all_info
         elif word in backend.Numeral.num_root:
             self.__root = word
-            self.__part_of_speech = 'num'
-            self.set_symbols_list('num')
-            self.set_symbols_list('card')
+            self.__part_of_speech = 'сан атооч'
+            self.set_symbols_list('сан атооч')
+            self.set_symbols_list('эсептик сан атооч')
             self.set_all_info()
             return self.__all_info
         else:
@@ -1482,6 +1483,9 @@ class Word:
     def original_word(self):
         return self.__original_word
 
+    @property
+    def part_of_speech_kg(self):
+        return self.__part_of_speech_kg
     @property
     def part_of_speech(self):
         return self.__part_of_speech
@@ -1522,6 +1526,8 @@ class Word:
         self.__number = number
     def set_negiz(self, negiz):
         self.__negiz = negiz
+    def set_part_of_speech_kg(self, part_of_speech_kg):
+        self.__part_of_speech_kg = part_of_speech_kg
     def set_part_of_speech(self, part_of_speech):
         self.__part_of_speech = part_of_speech
     def set_root(self, root):
@@ -1535,8 +1541,8 @@ class Word:
     def set_symbols_list(self, symbol):
         self.__symbols_list.append(symbol)
     def set_all_info(self):
-        if 'sg' in self.__symbols_list and 'pl' in self.__symbols_list:
-            self.__symbols_list.remove('sg')
+        if 'жекелик сан' in self.__symbols_list and 'pl' in self.__symbols_list:
+            self.__symbols_list.remove('жекелик сан')
         for symbol in self.__symbols_list:
             if symbol == '':
                 self.__symbols_list.remove(symbol)

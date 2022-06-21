@@ -1,14 +1,14 @@
 def get_info_cases(ending):
     if ending in case_genitive_simple or ending in case_genitive_hard:
-        return "gen"    #илик жондомо
+        return "илик жондомо"    #илик жондомо
     elif ending in case_dative_simple or ending in case_dative_hard:
-        return "dat"    #барыш
+        return "барыш жондомо"    #барыш
     elif ending in case_accusative_simple or ending in case_accusative_hard:
-        return "acc"    #табыш
+        return "табыш жондомо"    #табыш
     elif ending in case_locative_simple:
-        return "loc"    #жатыш
+        return "жатыш жондомо"    #жатыш
     elif ending in case_ablative_simple or ending in case_ablative_hard:
-        return "abl"    #чыгыш
+        return "чыгыш жондомо"    #чыгыш
     else:
         return 'none'
 case_genitive_simple = {

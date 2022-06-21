@@ -1,33 +1,33 @@
 def get_info_pronoun_root(root):
     if root in personal_pronoun:
-        return "pers"
+        return "жактама ат атооч"
     elif root in Demonstrative_pronoun:
-        return "dem"
+        return "шилтеме ат атооч"
     elif root in Interrogative_pronoun:
-        return "itg"
+        return "сурама ат атооч"
     elif root in Negative_pronoun:
-        return "neg"
+        return "таңгыч ат атооч"
     elif root in Quantifier_pronoun:
-        return "qnt"
+        return "аныктама ат атооч"
     elif root in Indefinite_pronoun:
-        return "ind"
+        return "белгисиз ат атооч"
     else:
         return "none"
 def is_sg_or_pl(root):
     if root in pronoun_singular:
         if root in Personal_pronoun_first_person:
-            return "p1sg"
+            return "1-жак жекелик сан"
         elif root in Personal_pronoun_second_person:
-            return "p2sg"
+            return "2-жак жекелик сан"
         else:
-            return "p3sg"
+            return "3-жак жекелик сан"
     elif root in pronoun_plural:
         if root in Personal_pronoun_first_person:
-            return "p1pl"
+            return "1-жак көптүк сан"
         elif root in Personal_pronoun_second_person:
-            return "p2pl"
+            return "2-жак көптүк сан"
         else:
-            return "p3pl"
+            return "3-жак көптүк сан"
 
     else:
         return "none"

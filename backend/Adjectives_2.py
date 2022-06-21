@@ -1,30 +1,30 @@
 def get_info_adj_root(root):
     if root in adj_sup_word:
-        return "adj_sup"
+        return "күчөтмө сын атооч"
     elif root in adj_pst_kosh_words or adj_pst_koshmok_words:
-        return "adj"
+        return "сын атооч"
 def get_info_noun_to_adj(ending):
     if ending in adj_noun_to_adj:
-        return 'adj'
+        return 'сын атооч'
     else:
         return 'none'
 def get_info_adj_ending(ending):
     if ending in adj_adj_to_adj:
-        return "adj"
+        return "сын атооч"
     elif ending in adj_comp_ending:
-        return "adj_comp"
+        return "салыштырма сын атооч"
     elif ending in adj_sup_ending:
-        return "adj_sup"
+        return "күчөтмө сын атооч"
     else:
         return 'none'
 def get_info_adj_verb_to_adj(ending):
     if ending in adj_verb_to_adj:
-        return "adj"
+        return "сын атооч"
     else:
         return 'none'
 def get_info_adj_noun_to_adj(ending):
     if ending in adj_noun_to_adj:
-        return "adj"
+        return "сын атооч"
     else:
         return 'none'
 

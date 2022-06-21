@@ -1,15 +1,15 @@
 def get_info_other(ending):
     if ending in negative:
-        return "neg"
+        return "терс маани мүчө"
     elif ending in question:
-        return "ques"
+        return "суроолуу мүчө"
     elif ending in plural:
-        return "pl"
+        return "көптүк сан"
     else:
         return 'none'
 def get_info_plural_for_num(ending):
     if ending in plural:
-        return "subst"
+        return "затташып кеткен мучө"
     else:
         return 'none'
 

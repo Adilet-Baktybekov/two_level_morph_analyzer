@@ -1,49 +1,49 @@
 
 def get_indo_verb_ideophone_to_verb(ending):
     if ending in verb_ideophone_to_verb:
-        return 'v'
+        return 'этиш'
     else:
         return 'none'
 def get_info_verb_verb_to_verb(ending):
     if ending in verb_verb_to_verb_more_used:
-        return 'v'
+        return 'этиш'
     elif ending in verb_verb_to_verb_less_used or ending in verb_verb_to_verb_useless:
-        return 'v'
+        return 'этиш'
     else:
         return 'none'
 def get_info_verb_other_to_verb(ending):
     if ending in verb_other_to_verb_more_used:
-        return 'v'
+        return 'этиш'
     elif ending in verb_other_to_verb_less_used or ending in verb_other_to_verb_useless:
-        return 'v'
+        return 'этиш'
     else:
         return 'none'
 def get_voice(ending):
     if ending in v_voice_reflexive:
-        return 'ref'
+        return 'өздүк мамиле'
     elif ending in v_voice_cooperative:
-        return 'coop'
+        return 'кош мамиле '
     elif ending in v_voice_passive:
-        return 'pass'
+        return 'туюк мамиле'
     elif ending in v_voice_causative:
-        return 'caus'
+        return 'аркылуу мамиле'
     else:
         return 'none'
 def get_mood(ending):
     if ending in v_tense_present:
-        return 'ind_pres'
+        return 'баяндагыч ыңгай учур чакта'
     elif ending in v_tense_past:
-        return 'ind_past'
+        return 'баяндагыч ыңгай өткөн чакта'
     elif ending in v_tense_future:
-        return 'ind_fut'
+        return 'баяндагыч ыңгай келер чакта'
     elif ending in v_mood_imperative:
-        return 'imp'
+        return 'буйрук ыңгай'
     elif ending in v_mood_conditional:
-        return 'cnd'
+        return 'шарттуу ыңгай'
     elif ending in v_mood_subjunctive:
-        return 'niet'
+        return 'ниет ыңгай'
     elif ending in v_mood_imperfect:
-        return 'tilek'
+        return 'тилек ыңгай'
     else:
         return 'none'
 #этиштин мамилелери
@@ -134,7 +134,7 @@ v_tense_future = {   #келер чак
 #чакчыл
 def get_chakchyl(ending):
     if ending in v_chakchyl_gna_perf:
-        return 'gna_perf'
+        return 'чакчыл'
     else:
         return 'none'
 v_chakchyl_gna_perf = {
@@ -160,15 +160,15 @@ v_chakchyl_gna_impf = {   #чакчыл
 #атоочтук
 def get_atoochtuk(ending):
     if ending in v_atoochtuk_gpr_perf:
-        return 'gpr_perf'
+        return 'атоочтук'
     elif ending in v_atoochtuk_gpr_fut_neg:
-        return 'gpr_fut_neg'
+        return 'атоочтук келер чакта'
     elif ending in v_atoochtuk_gpr_impf:
-        return 'gpr_impf'
+        return 'атоочтук'
     elif ending in v_atoochtuk_gpr_pres:
-        return 'gpr_pres'
+        return 'атоочтук учур чакта'
     elif ending in v_atoochtuk_gpr_past:
-        return 'gpr_past'
+        return 'атоочтук өткөн чакта'
     else:
         return 'none'
 v_atoochtuk_gpr_perf = {
@@ -199,13 +199,13 @@ v_atoochtuk_gpr_past = {
 #кыймыл атооч
 def get_gerund(ending):
     if ending in v_gerund:
-        return 'ger'
+        return 'кыймыл атооч'
     elif ending in v_gerund_ger_pres:
-        return 'ger_pres'
+        return 'кыймыл атооч учур чакта'
     elif ending in v_gerund_ger_impf:
-        return 'ger_impf'
+        return 'кыймыл атооч'
     elif ending in v_gerund_ger_pres:
-        return 'ger_pres'
+        return 'кыймыл атооч учур чакта'
     else:
         return 'none'
 v_gerund_ger_perf = {

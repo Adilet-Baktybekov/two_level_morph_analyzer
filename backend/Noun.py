@@ -1,21 +1,21 @@
 def get_info_noun_ending_from_noun(ending):
    if ending in noun_noun_to_noun_more_used:
-      return "n"
+      return "зат атооч"
    elif ending in agent_noun:
       return "agnt"
    elif ending in noun_noun_to_noun_less_used:
-      return "n"
+      return "зат атооч"
    elif ending in noun_noun_to_noun_useless:
-      return "n"
+      return "зат атооч"
    else:
       return 'none'
 def get_info_noun_ending_from_verb(ending):
    if ending in noun_verb_to_noun_more_used:
-      return "n"
+      return "зат атооч"
    elif ending in noun_verb_to_noun_less_used:
-      return "n"
+      return "зат атооч"
    elif ending in noun_verb_to_noun_useless:
-      return "n"
+      return "зат атооч"
    else:
       return 'none'
 agent_noun = {

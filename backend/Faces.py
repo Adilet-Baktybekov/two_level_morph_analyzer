@@ -1,12 +1,12 @@
 def get_info_faces(ending):
     if ending in face_1st_sg:
-        return "p1sg"
+        return "1-жак жекелик сан"
     elif ending in face_1st_pl:
-        return "p1pl"
+        return "1-жак көптүк сан"
     elif ending in face_2st_sg or ending in face_2st_sg_politely:
-        return "p2sg"
+        return "2-жак жекелик сан"
     elif ending in face_2st_pl or ending in face_2st_pl_politely:
-        return "p2pl"
+        return "2-жак көптүк сан"
     else:
         return 'none'
 

@@ -154,23 +154,23 @@ class Word:
             self.__root = new_word
             return True
         elif new_word in backend.sourceModule.verb:
-            self.set_part_of_speech('v')
+            self.set_part_of_speech('этиш')
             self.set_root(new_word)
             return True
         elif new_word in backend.Numeral.num_root:
-            self.set_part_of_speech('num')
+            self.set_part_of_speech('сан атооч')
             self.set_root(new_word)
             return True
         elif new_word in backend.sourceModule.adjective:
-            self.set_part_of_speech('adj')
+            self.set_part_of_speech('сын атооч')
             self.set_root(new_word)
             return True
         elif new_word in backend.Pronoun.all_pronoun:
-            self.set_part_of_speech('prn')
+            self.set_part_of_speech('ат атооч')
             self.set_root(new_word)
             return True
         elif new_word in backend.Adverb.adv_words or new_word in backend.Adverb.adv_kosh_words:
-            self.set_part_of_speech('adv')
+            self.set_part_of_speech('тактооч')
             self.set_root(new_word)
             return True
         else:
@@ -186,19 +186,19 @@ class Word:
             self.__root = new_word
             return True
         elif new_word in backend.sourceModule.verb:
-            self.set_part_of_speech('v')
+            self.set_part_of_speech('этиш')
             self.set_negiz(new_word)
             return True
         elif new_word in backend.Numeral.num_root:
-            self.set_part_of_speech('num')
+            self.set_part_of_speech('сан атооч')
             self.set_negiz(new_word)
             return True
         elif new_word in backend.sourceModule.adjective:
-            self.set_part_of_speech('adj')
+            self.set_part_of_speech('сын атооч')
             self.set_negiz(new_word)
             return True
         elif new_word in backend.Pronoun.all_pronoun:
-            self.set_part_of_speech('prn')
+            self.set_part_of_speech('ат атооч')
             self.set_root(new_word)
             if (symbol := backend.Pronoun.is_sg_or_pl(new_word)) != 'none':
                 self.set_symbols_list(symbol)
@@ -206,7 +206,7 @@ class Word:
                 self.set_symbols_list(symbol)
             return True
         elif new_word in backend.Adverb.adv_words or new_word in backend.Adverb.adv_kosh_words:
-            self.set_part_of_speech('adv')
+            self.set_part_of_speech('тактооч')
             self.set_root(new_word)
             return True
         else:
@@ -237,7 +237,7 @@ class Word:
                     new_list.reverse()
                     self.set_root(new_word)
                     self.set_part_of_speech(symbol)
-                    self.set_symbol('from_n_to_n',ending)
+                    self.set_symbol('заттан зат жасаган мучо',ending)
                     self.set_symbols_list(symbol)
                     new_list.pop(index)
                     new_list.reverse()
@@ -267,13 +267,13 @@ class Word:
                         if ending in backend.Faces.face_2st_sg_politely and key in backend.Others.plural:#сыздар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                         elif ending in backend.Others.negative and key in self.__symbols:#сыз
-                            self.__symbols[ending] = 'neg'
-                            self.set_symbols_list('neg')
+                            self.__symbols[ending] = 'терс маани мүчө'
+                            self.set_symbols_list('терс маани мүчө')
 
                     new_list.pop(index)
                     new_list.reverse()
@@ -302,17 +302,17 @@ class Word:
                         if ending in backend.Possessiveness.posessiveness_for_poses_2st_pl_politely and key in backend.Others.plural:# ыңыздар итд
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'px2pl'
+                            self.__symbols[ending + key] = '2-жактын көптүк сандын таандык мүчөсү'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('px2pl')
+                            self.set_symbols_list('2-жактын көптүк сандын таандык мүчөсү')
                         elif ending in backend.Possessiveness.posessiveness_for_face_p2pl and key in backend.Possessiveness.posessiveness_2st_pl: #сыңар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                     #------------
 
                     new_list.pop(index)
@@ -329,7 +329,7 @@ class Word:
                     new_list.reverse()
 
                     self.set_part_of_speech(symbol)
-                    self.set_symbol('from_n_to_adj', ending)
+                    self.set_symbol('зат атоочтон сын атооч жасаган мүчө', ending)
                     new_list.pop(index)
                     new_list.reverse()
 
@@ -465,7 +465,7 @@ class Word:
                     new_list.reverse()
                     self.set_root(new_word)
                     self.set_part_of_speech(symbol)
-                    self.set_symbol('from_v_to_v',ending)
+                    self.set_symbol('этиштен этиш жасоочу мүчө',ending)
                     new_list.pop(index)
                     new_list.reverse()
                     new_word = listToString(new_list)
@@ -499,8 +499,8 @@ class Word:
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     for sym in self.__symbols_list:
-                        if sym == 'act':#
-                            self.__symbols_list.remove('act')
+                        if sym == 'негизги мамиле':#
+                            self.__symbols_list.remove('негизги мамиле')
                     new_list.pop(index)
                     new_list.reverse()
                     new_word = listToString(new_list)
@@ -513,8 +513,8 @@ class Word:
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     for sym in self.__symbols_list:
-                        if sym == 'imp':#
-                            self.__symbols_list.remove('imp')
+                        if sym == 'буйрук ыңгай':#
+                            self.__symbols_list.remove('буйрук ыңгай')
                     new_list.pop(index)
                     new_list.reverse()
                     new_word = listToString(new_list)
@@ -535,20 +535,20 @@ class Word:
                         new_list.reverse()
                         continue
 
-                elif (symbol := backend.Faces.get_info_backend.Faces(ending)) != 'none':
+                elif (symbol := backend.Faces.get_info_faces(ending)) != 'none':
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     for key in list(self.__symbols.keys()):
                         if ending in backend.Faces.face_2st_sg_politely and key in backend.Others.plural:#сыздар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                         elif ending in backend.Others.negative and key in self.__symbols:#сыз
-                            self.__symbols[ending] = 'neg'
-                            self.set_symbols_list('neg')
+                            self.__symbols[ending] = 'терс маани мүчө'
+                            self.set_symbols_list('терс маани мүчө')
 
                     new_list.pop(index)
                     new_list.reverse()
@@ -577,17 +577,17 @@ class Word:
                         if ending in backend.Possessiveness.posessiveness_for_poses_2st_pl_politely and key in backend.Others.plural:# ыңыздар итд
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'px2pl'
+                            self.__symbols[ending + key] = '2-жактын көптүк сандын таандык мүчөсү'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('px2pl')
+                            self.set_symbols_list('2-жактын көптүк сандын таандык мүчөсү')
                         elif ending in backend.Possessiveness.posessiveness_for_face_p2pl and key in backend.Possessiveness.posessiveness_2st_pl: #сыңар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                     #------------
 
                     new_list.pop(index)
@@ -603,7 +603,7 @@ class Word:
                     self.set_root(new_word)
                     new_list.reverse()
                     self.set_part_of_speech(symbol)
-                    self.set_symbol('from_v_to_n', ending)
+                    self.set_symbol('этиштен атооч жасоочу мүчө', ending)
                     new_list.pop(index)
                     new_list.reverse()
 
@@ -747,7 +747,7 @@ class Word:
                 elif (symbol := backend.Cases.get_info_cases(ending)) != 'none':
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
-                    self.set_symbols_list('subst')#subst - затташып кеткен символ
+                    self.set_symbols_list('затташкан мүчө')#subst - затташып кеткен символ
                     new_list.pop(index)
                     new_list_2 = list(new_list)
                     new_list_2.reverse()
@@ -763,13 +763,13 @@ class Word:
                         if ending in backend.Faces.face_2st_sg_politely and key in backend.Others.plural:#сыздар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                         elif ending in backend.Others.negative and key in self.__symbols:#сыз
-                            self.__symbols[ending] = 'neg'
-                            self.set_symbols_list('neg')
+                            self.__symbols[ending] = 'терс маани мүчө'
+                            self.set_symbols_list('терс маани мүчө')
 
                     new_list.pop(index)
                     new_list.reverse()
@@ -780,9 +780,9 @@ class Word:
                         new_list.reverse()
                         continue
                 elif (symbol := backend.Others.get_info_plural_for_num(ending)) != 'none':
-                    self.set_symbols_list('pl')
+                    self.set_symbols_list('көптүк сан')
                     self.set_symbols_list(symbol)
-                    self.set_symbol('pl', ending)
+                    self.set_symbol('көптүк сан', ending)
                     new_list.pop(index)
                     new_list_2 = list(new_list)
                     new_list_2.reverse()
@@ -811,17 +811,17 @@ class Word:
                         if ending in backend.Possessiveness.posessiveness_for_poses_2st_pl_politely and key in backend.Others.plural:# ыңыздар итд
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'px2pl'
+                            self.__symbols[ending + key] = '2-жактын көптүк сандын таандык мүчөсү'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('px2pl')
+                            self.set_symbols_list('2-жактын көптүк сандын таандык мүчөсү')
                         elif ending in backend.Possessiveness.posessiveness_for_face_p2pl and key in backend.Possessiveness.posessiveness_2st_pl: #сыңар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                     #------------
 
                     new_list.pop(index)
@@ -1004,7 +1004,7 @@ class Word:
 # -------------------------------------------------------------------------------------------------------------------------
             elif self.part_of_speech == "adj" or self.part_of_speech == "сын атооч":
                 if (symbol := backend.Adjectives_2.get_info_adj_ending(ending)) != 'none':
-                    self.set_symbol('from_adj_to_adj', ending)
+                    self.set_symbol('сын атоочтон сын атооч жасоочу мүчө', ending)
                     new_list.pop(index)
                     new_list_2 = list(new_list)
                     new_list_2.reverse()
@@ -1014,7 +1014,7 @@ class Word:
                     else:
                         continue
                 elif (symbol := backend.Cases.get_info_cases(ending)) != 'none':
-                    self.set_symbols_list('subst')
+                    self.set_symbols_list('затташып кеткен мучө')
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     new_list.pop(index)
@@ -1027,21 +1027,21 @@ class Word:
                         continue
 
                 elif (symbol := backend.Faces.get_info_faces(ending)) != 'none':
-                    self.set_symbols_list('subst')
+                    self.set_symbols_list('затташып кеткен мучө')
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     for key in list(self.__symbols.keys()):
                         if ending in backend.Faces.face_2st_sg_politely and key in backend.Others.plural:#сыздар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                         elif ending in backend.Others.negative and key in self.__symbols:#сыз
                             self.__symbols_list.remove(self.__symbols[key])
-                            self.__symbols[ending] = 'neg'
-                            self.set_symbols_list('neg')
+                            self.__symbols[ending] = 'терс маани мүчө'
+                            self.set_symbols_list('терс маани мүчө')
 
                     new_list.pop(index)
                     new_list.reverse()
@@ -1053,7 +1053,7 @@ class Word:
                         continue
 
                 elif (symbol := backend.Others.get_info_other(ending)) != 'none':
-                    self.set_symbols_list('subst')
+                    self.set_symbols_list('затташып кеткен мучө')
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     new_list.pop(index)
@@ -1065,7 +1065,7 @@ class Word:
                         new_list.reverse()
                         continue
                 elif (symbol := backend.Possessiveness.get_info_possessive(ending)) != 'none':
-                    self.set_symbols_list('subst')
+                    self.set_symbols_list('затташып кеткен мучө')
                     self.set_symbol(symbol, ending)
                     self.set_symbols_list(symbol)
                     #------------
@@ -1073,17 +1073,17 @@ class Word:
                         if ending in backend.Possessiveness.posessiveness_for_poses_2st_pl_politely and key in backend.Others.plural:# ыңыздар итд
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'px2pl'
+                            self.__symbols[ending + key] = '2-жактын көптүк сандын таандык мүчөсү'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('px2pl')
+                            self.set_symbols_list('2-жактын көптүк сандын таандык мүчөсү')
                         elif ending in backend.Possessiveness.posessiveness_for_face_p2pl and key in backend.Possessiveness.posessiveness_2st_pl: #сыңар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                     #------------
 
                     new_list.pop(index)
@@ -1231,13 +1231,13 @@ class Word:
                         if ending in backend.Faces.face_2st_sg_politely and key in backend.Others.plural:#сыздар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                         elif ending in backend.Others.negative and key in self.__symbols:#сыз
-                            self.__symbols[ending] = 'neg'
-                            self.set_symbols_list('neg')
+                            self.__symbols[ending] = 'терс маани мүчө'
+                            self.set_symbols_list('терс маани мүчө')
 
                     new_list.pop(index)
                     new_list.reverse()
@@ -1267,17 +1267,17 @@ class Word:
                         if ending in backend.Possessiveness.posessiveness_for_poses_2st_pl_politely and key in backend.Others.plural:# ыңыздар итд
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'px2pl'
+                            self.__symbols[ending + key] = '2-жактын көптүк сандын таандык мүчөсү'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('px2pl')
+                            self.set_symbols_list('2-жактын көптүк сандын таандык мүчөсү')
                         elif ending in backend.Possessiveness.posessiveness_for_face_p2pl and key in backend.Possessiveness.posessiveness_2st_pl: #сыңар
                             self.__symbols_list.remove(self.__symbols[ending])
                             self.__symbols[ending + key] = self.__symbols.pop(ending)
-                            self.__symbols[ending + key] = 'p2pl'
+                            self.__symbols[ending + key] = '2-жактын көптук саны'
                             self.__symbols_list.remove(self.__symbols[key])
                             self.__symbols.pop(key)
-                            self.set_symbols_list('p2pl')
+                            self.set_symbols_list('2-жактын көптук саны')
                     #------------
 
                     new_list.pop(index)
@@ -1541,19 +1541,19 @@ class Word:
     def set_symbols_list(self, symbol):
         self.__symbols_list.append(symbol)
     def set_all_info(self):
-        if 'жекелик сан' in self.__symbols_list and 'pl' in self.__symbols_list:
+        if 'жекелик сан' in self.__symbols_list and 'көптүк сан' in self.__symbols_list:
             self.__symbols_list.remove('жекелик сан')
         for symbol in self.__symbols_list:
             if symbol == '':
                 self.__symbols_list.remove(symbol)
-            elif symbol == 'nom' in self.__symbols_list and [sym for sym in backend.sourceModule.case if (sym in self.__symbols_list)]:
-                self.__symbols_list.remove('nom')
-            elif symbol == 'act' in self.__symbols_list and [sym for sym in backend.sourceModule.voice if (sym in self.__symbols_list)]:
-                self.__symbols_list.remove('act')
-            elif symbol == 'imp' in self.__symbols_list and [sym for sym in backend.sourceModule.mood if (sym in self.__symbols_list)]:
-                self.__symbols_list.remove('imp')
-            elif symbol == 'p3sg' in self.__symbols_list and [sym for sym in backend.sourceModule.face if (sym in self.__symbols_list)]:
-                self.__symbols_list.remove('p3sg')
+            elif symbol == 'ат атооч' in self.__symbols_list and [sym for sym in backend.sourceModule.case if (sym in self.__symbols_list)]:
+                self.__symbols_list.remove('ат атооч')
+            elif symbol == 'негизги мамиле' in self.__symbols_list and [sym for sym in backend.sourceModule.voice if (sym in self.__symbols_list)]:
+                self.__symbols_list.remove('негизги мамиле')
+            elif symbol == 'буйрук ыңгай' in self.__symbols_list and [sym for sym in backend.sourceModule.mood if (sym in self.__symbols_list)]:
+                self.__symbols_list.remove('буйрук ыңгай')
+            elif symbol == '3-жак' in self.__symbols_list and [sym for sym in backend.sourceModule.face if (sym in self.__symbols_list)]:
+                self.__symbols_list.remove('3-жак')
         self.__symbols_list = [i for i in self.__symbols_list if i]
         if self.__negiz == '':
             self.__all_info = "Уңгу: " + str(self.__root) + ".\n" + "Сөз түркүм: " + str(self.__part_of_speech) + \

@@ -1,11 +1,11 @@
 def get_info_adv_root(root):
     if root in adv_words or adv_kosh_words:
-        return "adv"
+        return "тактооч"
     else:
         return "none"
 def get_info_adv_ending(ending):
     if ending in adv_ending:
-        return "adv"
+        return "тактооч"
     else:
         return "none"
 adv_words = {

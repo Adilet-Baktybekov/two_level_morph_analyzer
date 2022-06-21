@@ -3,13 +3,13 @@
 
 def get_info_numeral_ending(ending):
    if ending in num_ending_ordinal:
-      return "ord"
+      return "иреттик сан атооч"
    elif ending in num_ending_fraction_and_top:
-      return "top"
+      return "бөлчөк же топ сан атооч"
    elif ending in num_ending_collective:
-      return "coll"
+      return "жамдама сан атооч"
    elif ending in num_ending_not_sure:
-      return "chamalama"
+      return "чамалама сан атооч"
    else:
       return 'none'
 num_ending_ordinal = {     #иреттик сан атооч
